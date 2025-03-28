@@ -1,6 +1,5 @@
 import numpy as np
 
-# Macierz Hamminga (taka sama jak w C++)
 matrix_H = np.array([
     [1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
     [1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
@@ -38,8 +37,8 @@ def decode(encoded_file, output_file):
     with open(encoded_file, "r") as infile, open(output_file, "wb") as outfile:
         for line in infile:
             encoded_bits = [int(b) for b in line.strip()]
-            message = encoded_bits[:BIT_NR]
-            received_check = encoded_bits[BIT_NR:]
+           # message = encoded_bits[:BIT_NR]
+           # received_check = encoded_bits[BIT_NR:]
 
             # Obliczanie błędów
             mistakes = [(sum(encoded_bits * matrix_H[i]) % 2) for i in range(BIT_NR)]
