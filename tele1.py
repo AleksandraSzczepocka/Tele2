@@ -1,3 +1,10 @@
+#--------------------------------------
+#  Autorzy:
+#  Dawid Pakos 251604
+#  Aleksandra Szczepocka 251642                               
+#--------------------------------------
+
+
 import numpy as np
 
 matrix_H = np.array([
