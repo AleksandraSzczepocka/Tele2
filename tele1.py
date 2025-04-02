@@ -80,11 +80,11 @@ if __name__ == "__main__":
 
     if choice == "1":
         input_file = input("Podaj nazwę pliku do zakodowania: ")
-        encoded_file = input("Podaj nazwę pliku wyjściowego (zakodowanego): ")
+        encoded_file = input("Podaj nazwę pliku wyjściowego z rozszerzeniem .txt/.bin (zakodowanego): ")
         encode(input_file, encoded_file)
     elif choice == "2":
         encoded_file = input("Podaj nazwę pliku zakodowanego: ")
-        output_file = input("Podaj nazwę pliku wyjściowego (zdekodowanego): ")
+        output_file = input("Podaj nazwę pliku wyjściowego z rozszerzeniem .txt/.bin (zdekodowanego): ")
         decode(encoded_file, output_file)
     else:
         print("Nieprawidłowy wybór.")
