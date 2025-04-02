@@ -19,13 +19,13 @@ def encode(input_file, encoded_file):
         byte = infile.read(1)
         while byte:
             byte_val = ord(byte)  # Konwersja bajtu na wartość liczbową
-            message = np.array([int(b) for b in format(byte_val, '08b')])  # Zamiana na listę bitów
+            content = np.array([int(b) for b in format(byte_val, '08b')])  # Zamiana na listę bitów
 
             # Mnożenie wiadomości przez 8 pierwszych kolumn macierzy
-            check = np.dot(matrix_H[:, :BIT_NR], message) % 2
+            check = np.dot(matrix_H[:, :BIT_NR], content) % 2
 
             # Tworzenie zakodowanych ciągów bitów
-            encoded_bits = np.concatenate((message, check))
+            encoded_bits = np.concatenate((content, check))
             outfile.write("".join(map(str, encoded_bits)) + "\n")
 
             byte = infile.read(1)
@@ -79,11 +79,11 @@ if __name__ == "__main__":
     choice = input("Wybierz opcję: ")
 
     if choice == "1":
-        input_file = input("Podaj nazwę pliku do zakodowania: ")
+        input_file = input("Podaj nazwę pliku do zakodowania z rozszerzeniem: ")
         encoded_file = input("Podaj nazwę pliku wyjściowego z rozszerzeniem .txt/.bin (zakodowanego): ")
         encode(input_file, encoded_file)
     elif choice == "2":
-        encoded_file = input("Podaj nazwę pliku zakodowanego: ")
+        encoded_file = input("Podaj nazwę pliku zakodowanego z rozszerzeniem: ")
         output_file = input("Podaj nazwę pliku wyjściowego z rozszerzeniem .txt/.bin (zdekodowanego): ")
         decode(encoded_file, output_file)
     else:
