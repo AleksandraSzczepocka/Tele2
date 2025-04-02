@@ -21,7 +21,7 @@ def encode(input_file, encoded_file):
             byte_val = ord(byte)  # Konwersja bajtu na wartość liczbową
             message = np.array([int(b) for b in format(byte_val, '08b')])  # Zamiana na listę bitów
 
-            # Mnożenie wiadomość przez 8 pierwszych kolumn macierzy
+            # Mnożenie wiadomości przez 8 pierwszych kolumn macierzy
             check = np.dot(matrix_H[:, :BIT_NR], message) % 2
 
             # Tworzenie zakodowanych ciągów bitów
@@ -30,7 +30,7 @@ def encode(input_file, encoded_file):
 
             byte = infile.read(1)
 
-    print("Plik został zakodowany.")
+    print(f"Plik '{input_file}' został zakodowany do '{encoded_file}'.")
 
 
 def decode(encoded_file, output_file):
@@ -69,7 +69,7 @@ def decode(encoded_file, output_file):
             byte_val = int("".join(map(str, encoded_bits[:BIT_NR])), 2)
             outfile.write(byte_val.to_bytes(1, 'big'))
 
-    print("Plik został zdekodowany.")
+    print(f"Plik '{encoded_file}' został zdekodowany do '{output_file}'.")
 
 
 # Menu wyboru
@@ -79,9 +79,12 @@ if __name__ == "__main__":
     choice = input("Wybierz opcję: ")
 
     if choice == "1":
-        file_name = input("Podaj nazwę pliku do zakodowania: ")
-        encode(file_name, "encoded.txt")
+        input_file = input("Podaj nazwę pliku do zakodowania: ")
+        encoded_file = input("Podaj nazwę pliku wyjściowego (zakodowanego): ")
+        encode(input_file, encoded_file)
     elif choice == "2":
-        decode("encoded.txt", "decoded.bin")
+        encoded_file = input("Podaj nazwę pliku zakodowanego: ")
+        output_file = input("Podaj nazwę pliku wyjściowego (zdekodowanego): ")
+        decode(encoded_file, output_file)
     else:
         print("Nieprawidłowy wybór.")
